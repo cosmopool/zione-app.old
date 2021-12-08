@@ -1,11 +1,13 @@
+import 'package:zione_app/config/auth.dart' as auth_config;
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:zione_app/config/constants.dart' as conf;
 
-  const headers = {
+  final headers = {
     'Content-type' : 'application/json', 
     'Accept': 'application/json',
+    'Authorization': auth_config.token
   };
 
 String validadeEndpoint(String endpoint) {
@@ -13,16 +15,24 @@ String validadeEndpoint(String endpoint) {
   return endpoint;
 }
 
-Future<Map> getContent(String endpoint, Map content) async {
+
+
+
+Future<Map> getContent(String endpoint) async {
   Map result;
 
-  final url = Uri.http(conf.host+":"+conf.port, "/$validadeEndpoint(endpoint)");
+  final validEndpoint = validadeEndpoint(endpoint);
+
+  final url = Uri.http(conf.host+":"+conf.port, "/$validEndpoint");
   final response = await http.get(url, headers:headers, );
 
   result = jsonDecode(response.body);
 
   return result;
 }
+
+
+
 
 Future<Map> postContent(String endpoint, Map content) async {
   Map result;
@@ -34,6 +44,9 @@ Future<Map> postContent(String endpoint, Map content) async {
 
   return result;
 }
+
+
+
 
 Future <Map> sendLoginRequest(String user, String pass) async {
   // sends a request to the server with user credentials to receive a jwt token

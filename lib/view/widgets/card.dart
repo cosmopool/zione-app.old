@@ -1,62 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:zione_app/model/agenda_entry.dart';
 
-class CardContracted extends StatefulWidget {
-
-  @override
-  _CardContractedState createState() => _CardContractedState();
+Widget dividerTheme() {
+  return const Divider(
+    thickness: 1,
+    indent: 20,
+    endIndent: 20,
+  );
 }
 
-class _CardContractedState extends State<CardContracted> {
+class EntryCard extends StatefulWidget {
+  final AgendaEntry entry;
+
+  const EntryCard({Key? key, required this.entry}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: Card(
-            child: Column(
-                children: const <Widget>[
-                  ListTile(
-                      title: Text('18:00'),
-                      trailing: Icon(Icons.more_vert),
-                  ),
-                  ListTile(
-                      title: Text('Centro, São José dos Pinhais'),
-                      subtitle: Text('Orçamento de motor'),
-                  )
-                ],
-            ),
-        ),
-    );
-  }
+  _EntryCardState createState() => _EntryCardState();
 }
 
-class CardExtended extends StatefulWidget {
-
-  @override
-  _CardExtendedState createState() => _CardExtendedState();
-}
-
-class _CardExtendedState extends State<CardExtended> {
+class _EntryCardState extends State<EntryCard> {
+  bool expanded = false;
+  double borderRadius = 12.0;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Card(
+        color: expanded ? Colors.white : Colors.grey[300],
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(borderRadius))),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: const <Widget>[
+          children: <Widget>[
             ListTile(
-              title: Text('13:00'),
-              trailing: Icon(Icons.create),
+              title: Text(
+                widget.entry.time,
+                style: const TextStyle(
+                  fontSize: 38,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+              trailing: const Icon(Icons.create),
+              onTap: () {
+                setState(() {
+                  expanded = !expanded;
+                });
+              },
             ),
+            dividerTheme(),
             ListTile(
-                title: Text('Adriane Bosson'),
-                subtitle: Text('Orçamento de motor'),
-                trailing: Icon(Icons.phone),
+              title: Text(widget.entry.clientName),
+              subtitle: Text(widget.entry.serviceType),
+              trailing: const Icon(Icons.phone),
             ),
+            dividerTheme(),
             ListTile(
-                title: Text('Rua Almir, 156'),
-                subtitle: Text('Centro, São José dos Pinhais'),
-                trailing: Icon(Icons.location_on),
+              title: Text(widget.entry.clientAddress),
+              subtitle: Text(widget.entry.clientAddress),
+              trailing: const Icon(Icons.location_on),
             ),
           ],
         ),

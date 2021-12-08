@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zione_app/config/auth.dart' as auth_config;
 import 'package:zione_app/controller/authentication.dart' as auth;
+import 'package:zione_app/model/request.dart' as req;
 import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {

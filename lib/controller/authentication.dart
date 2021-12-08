@@ -25,7 +25,8 @@ Future<bool> setToken(String user, String pass) async {
   final token = validadeResponse(response);
 
   if (token['Status'] == "Success") {
-    auth_config.token = "Bearer $token['Result']";
+    final jwtToken = token['Result'];
+    auth_config.token = "Bearer $jwtToken";
     result = true;
   } else {
     result = false;
