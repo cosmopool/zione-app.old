@@ -1,4 +1,4 @@
-class Entry{
+class Appointment{
   final String date;
   final String time;
   final String duration;
@@ -6,7 +6,7 @@ class Entry{
   final int ticketId;
   final bool appointmentIsFinished;
 
-  Entry({
+  Appointment({
     this.date = "",
     this.time = "",
     this.duration = "",
