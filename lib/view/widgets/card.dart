@@ -3,6 +3,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:zione_app/model/ticket.dart';
 import 'package:zione_app/model/agenda_entry.dart';
+
+import 'package:zione_app/view/widgets/card_menu.dart';
+import 'package:zione_app/view/widgets/bottom_modal.dart';
+
 import 'package:zione_app/controller/url_launcher.dart' as launch;
 
 Widget dividerTheme() {
@@ -51,7 +55,7 @@ class _EntryCardState extends State<EntryCard> {
                 trailing: expanded
                     ? IconButton(
                         icon: const Icon(FontAwesomeIcons.ellipsisV),
-                        onPressed: () => print('select'),
+                        onPressed: () => showBottomAutoSizeModal(context, CardMenu("agendamento")),
                       )
                     : null,
                 onTap: () {
@@ -151,7 +155,7 @@ class _TicketCardState extends State<TicketCard> {
                 trailing: expanded
                     ? IconButton(
                         icon: const Icon(FontAwesomeIcons.ellipsisV),
-                        onPressed: () => print('select'),
+                        onPressed: () => showBottomAutoSizeModal(context, CardMenu("chamado")),
                       )
                     : null,
                 onTap: () {
