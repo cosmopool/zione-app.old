@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zione_app/config/auth.dart' as auth_config;
+// import 'package:zione_app/config/auth.dart' as auth_config;
 import 'package:zione_app/controller/authentication.dart' as auth;
-import 'package:zione_app/model/request.dart' as req;
+// import 'package:zione_app/model/request.dart' as req;
 import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
@@ -24,9 +24,10 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: () async {
                 var token = await auth.setToken("kaio", "kaio123");
                 if (token ==  true) {
-                  GoRouter.of(context).go('/agenda');
+                  // Navigator.pushNamed(context, '/agenda');
+                  context.go('/main');
                 }
-                print(auth_config.token);
+                // print(auth_config.token);
               },
             child: const Text('Login'),
           ),

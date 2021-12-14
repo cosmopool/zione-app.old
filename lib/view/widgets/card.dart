@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:zione_app/model/ticket.dart';
 import 'package:zione_app/model/agenda_entry.dart';
+import 'package:zione_app/controller/url_launcher.dart' as launch;
 
 Widget dividerTheme() {
   return const Divider(
@@ -26,38 +30,182 @@ class _EntryCardState extends State<EntryCard> {
   Widget build(BuildContext context) {
     return Center(
       child: Card(
-        color: expanded ? Colors.white : Colors.grey[300],
+        margin: const EdgeInsets.symmetric(
+            horizontal: 20, vertical: 7.5),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(borderRadius))),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            ListTile(
-              title: Text(
-                widget.entry.time,
-                style: const TextStyle(
-                  fontSize: 38,
-                  fontWeight: FontWeight.w900,
+            Padding(
+              padding: const EdgeInsets.only(top: 15),
+              child: ListTile(
+                title: Text(
+                  widget.entry.time,
+                  style: TextStyle(
+                    fontSize: expanded ? 50 : 40,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+                // trailing: expanded ? const Icon(FontAwesomeIcons.ellipsisV) : null,
+                trailing: expanded
+                    ? IconButton(
+                        icon: const Icon(FontAwesomeIcons.ellipsisV),
+                        onPressed: () => print('select'),
+                      )
+                    : null,
+                onTap: () {
+                  setState(() {
+                    expanded = !expanded;
+                  });
+                },
+              ),
+            ),
+            Visibility(
+              visible: !expanded,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Column(
+                  children: [
+                    ListTile(
+                      title: Text(widget.entry.clientAddress),
+                      subtitle: Text(widget.entry.serviceType),
+                    ),
+                  ],
                 ),
               ),
-              trailing: const Icon(Icons.create),
-              onTap: () {
-                setState(() {
-                  expanded = !expanded;
-                });
-              },
             ),
-            dividerTheme(),
-            ListTile(
-              title: Text(widget.entry.clientName),
-              subtitle: Text(widget.entry.serviceType),
-              trailing: const Icon(Icons.phone),
+            Visibility(
+              visible: expanded,
+              child: Column(
+                children: [
+                  dividerTheme(),
+                  ListTile(
+                    title: Text(widget.entry.clientName),
+                    subtitle: Text(widget.entry.serviceType),
+                    // trailing: const Icon(FontAwesomeIcons.phone),
+                    trailing: IconButton(
+                    onPressed: () => launch.phone(widget.entry.clientPhone),
+                        icon: const Icon(FontAwesomeIcons.phone)),
+                  ),
+                  dividerTheme(),
+                  ListTile(
+                    title: Text(widget.entry.clientAddress),
+                    subtitle: Text(widget.entry.clientAddress),
+                    // trailing: const Icon(Icons.location_on),
+                    trailing: IconButton(
+                    onPressed: () => launch.maps(widget.entry.clientAddress),
+                        icon: const Icon(FontAwesomeIcons.mapMarkerAlt)),
+                  ),
+                  dividerTheme(),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: ListTile(
+                      title: Text(widget.entry.description),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            dividerTheme(),
-            ListTile(
-              title: Text(widget.entry.clientAddress),
-              subtitle: Text(widget.entry.clientAddress),
-              trailing: const Icon(Icons.location_on),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class TicketCard extends StatefulWidget {
+  final Ticket ticket;
+
+  const TicketCard({Key? key, required this.ticket}) : super(key: key);
+
+  @override
+  _TicketCardState createState() => _TicketCardState();
+}
+
+class _TicketCardState extends State<TicketCard> {
+  bool expanded = false;
+  double borderRadius = 12.0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Card(
+        margin: EdgeInsets.symmetric(
+            horizontal: expanded ? 15 : 20, vertical: expanded ? 20 : 7.5),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(borderRadius))),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(top: 15),
+              child: ListTile(
+                title: Text(
+                  widget.ticket.clientName,
+                  style: TextStyle(
+                    fontSize: expanded ? 48 : 40,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+                trailing: expanded
+                    ? IconButton(
+                        icon: const Icon(FontAwesomeIcons.ellipsisV),
+                        onPressed: () => print('select'),
+                      )
+                    : null,
+                onTap: () {
+                  setState(() {
+                    expanded = !expanded;
+                  });
+                },
+              ),
+            ),
+            Visibility(
+              visible: !expanded,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Column(
+                  children: [
+                    ListTile(
+                      title: Text(widget.ticket.clientAddress),
+                      subtitle: Text(widget.ticket.serviceType),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Visibility(
+              visible: expanded,
+              child: Column(
+                children: [
+                  dividerTheme(),
+                  ListTile(
+                    title: Text(widget.ticket.clientName),
+                    subtitle: Text(widget.ticket.serviceType),
+                    // trailing: const Icon(FontAwesomeIcons.phone),
+                    trailing: IconButton(
+                    onPressed: () => launch.phone(widget.ticket.clientPhone),
+                        icon: const Icon(FontAwesomeIcons.phone)),
+                  ),
+                  dividerTheme(),
+                  ListTile(
+                    title: Text(widget.ticket.clientAddress),
+                    subtitle: Text(widget.ticket.clientAddress),
+                    // trailing: const Icon(Icons.location_on),
+                    trailing: IconButton(
+                    onPressed: () => launch.maps(widget.ticket.clientAddress),
+                        icon: const Icon(FontAwesomeIcons.mapMarkerAlt)),
+                  ),
+                  dividerTheme(),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: ListTile(
+                      title: Text(widget.ticket.description),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

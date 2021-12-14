@@ -1,16 +1,4 @@
-// const myJson = {
-//   'client_name': 'Nicodemos Biancato',
-//   'client_phone': '4199955566',
-//   'client_address': 'instalar as cameras na casa da frente',
-//   'service_type': 'instalacao',
-//   'description': '- Falar com Fatima - Instalar as cameras na casa da frente',
-//   'date': '2021-01-12',
-//   'time': '08:00:00',
-//   'duration': '00:30:00',
-//   'id': 1,
-//   'ticket_id': 2,
-//   'is_finished': false
-// };
+// import 'package:zione_app/model/request.dart' as req;
 
 List<AgendaEntry> parseListJsonToAgendaEntry(List response) {
   List<AgendaEntry> temp = [];
@@ -30,6 +18,10 @@ class AgendaEntry {
   late String clientName;
   late String clientPhone;
   late String clientAddress;
+  // late String clientAddressStreet;
+  // late String clientAddressNumber;
+  // late String clientAddressCity;
+  // late String clientAddressRegion;
   late String serviceType;
   late String description;
   late String date;
@@ -40,16 +32,23 @@ class AgendaEntry {
   late bool appointmentIsFinished;
 
   AgendaEntry(Map<String, dynamic> response) {
-    clientName = response['client_name'] as String;
-    clientPhone = response['client_phone'] as String;
-    clientAddress = response['client_address'] as String;
-    serviceType = response['service_type'] as String;
+    // id = response['id'] as int;
+    clientName = response['clientName'] as String;
+    clientPhone = response['clientPhone'] as String;
+    clientAddress = response['clientAddress'] as String;
+    // clientAddressStreet = response['clientAddressStreet'] as String;
+    // clientAddressNumber = response['clientAddressNumber'] as String;
+    // clientAddressCity = response['clientAddressCity'] as String;
+    // clientAddressRegion = response['clientAddressRegion'] as String;
+    serviceType = response['serviceType'] as String;
     description = response['description'] as String;
     date = response['date'] as String;
     time = response['time'] as String;
     duration = response['duration'] as String;
-    appointmentId = response['id'] as int;
-    ticketId = response['ticket_id'] as int;
-    appointmentIsFinished = response['is_finished'] as bool;
+    ticketId = response['ticketId'] as int;
+    appointmentIsFinished = response['isFinished'] as bool;
+
+    time = time.substring(0, 5);
+    duration = duration.substring(0, 5);
   }
 }

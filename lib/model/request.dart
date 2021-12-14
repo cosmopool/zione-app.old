@@ -18,13 +18,28 @@ String validadeEndpoint(String endpoint) {
 
 
 
+Future<Map> getGeocoding(String address) async {
+  Map result;
+
+  // final addressEncode = Uri.encodeFull(address);
+  final url = Uri.http("http://api.positionstack.com/v1/", "forward?access_key=e35984b52f301530ccef88aa2260179e&output=json&query=$address");
+  final response = await http.get(url, headers:headers, );
+
+  result = jsonDecode(response.body);
+
+  return result;
+}
+
+
+
+
 Future<Map> getContent(String endpoint) async {
   Map result;
 
   final validEndpoint = validadeEndpoint(endpoint);
 
   final url = Uri.http(conf.host+":"+conf.port, "/$validEndpoint");
-  final response = await http.get(url, headers:headers, );
+  final response = await http.get(url, headers:headers);
 
   result = jsonDecode(response.body);
 
@@ -37,7 +52,9 @@ Future<Map> getContent(String endpoint) async {
 Future<Map> postContent(String endpoint, Map content) async {
   Map result;
 
-  final url = Uri.http(conf.host+":"+conf.port, "/$validadeEndpoint(endpoint)");
+  final validEndpoint = validadeEndpoint(endpoint);
+
+  final url = Uri.http(conf.host+":"+conf.port, "/$validEndpoint");
   final response = await http.post(url, headers:headers, body:jsonEncode(content));
 
   result = jsonDecode(response.body);

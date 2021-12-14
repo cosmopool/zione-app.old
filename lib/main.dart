@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zione_app/view/screens/login.dart';
-// import 'package:zione_app/view/screens/tickets.dart';
+import 'package:zione_app/view/screens/tickets.dart';
 // import 'package:zione_app/view/screens/settings.dart';
+import 'package:zione_app/view/screens/main_screen.dart';
 import 'package:zione_app/view/screens/agenda.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,8 +27,20 @@ class App extends StatelessWidget {
         builder: (context, state) => LoginPage(),
       ),
       GoRoute(
+        path: '/main',
+        builder: (context, state) => MainPage(),
+      ),
+      GoRoute(
         path: '/agenda',
         builder: (context, state) => AgendaPage(),
+      ),
+      GoRoute(
+        path: '/add',
+        builder: (context, state) => TicketsPage(),
+      ),
+      GoRoute(
+        path: '/tickets',
+        builder: (context, state) => TicketsPage(),
       ),
     ],
   );
