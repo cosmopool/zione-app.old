@@ -15,6 +15,7 @@ List<AgendaEntry> parseListJsonToAgendaEntry(List response) {
 }
 
 class AgendaEntry {
+  int? id;
   late String clientName;
   late String clientPhone;
   late String clientAddress;
@@ -32,7 +33,7 @@ class AgendaEntry {
   late bool appointmentIsFinished;
 
   AgendaEntry(Map<String, dynamic> response) {
-    // id = response['id'] as int;
+    id = response['id'] as int;
     clientName = response['clientName'] as String;
     clientPhone = response['clientPhone'] as String;
     clientAddress = response['clientAddress'] as String;
