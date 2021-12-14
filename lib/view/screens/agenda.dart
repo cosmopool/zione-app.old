@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:zione_app/view/widgets/card.dart';
 import 'package:zione_app/view/widgets/add_entry.dart';
+import 'package:zione_app/view/widgets/bottom_modal.dart';
 
 import 'package:zione_app/model/request.dart' as req;
 import 'package:zione_app/model/agenda_entry.dart' as agenda;
@@ -99,7 +100,7 @@ class FloatingButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton.extended(
       onPressed: () {
-        addEntryModal(context);
+        showBottomAutoSizeModal(context, EntryForm());
       },
       label: const Text('Adicionar'),
       icon: const Icon(FontAwesomeIcons.plus),

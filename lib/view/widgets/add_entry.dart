@@ -6,34 +6,6 @@ import 'package:date_field/date_field.dart';
 import 'package:zione_app/view/widgets/input_text.dart' as input;
 import 'package:zione_app/model/request.dart' as req;
 
-addEntryModal(context) {
-  return showModalBottomSheet<void>(
-      context: context,
-      isScrollControlled: true,
-      builder: (BuildContext context) {
-        return SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Column(
-                    children: [
-                      EntryForm(),
-                    ],
-                  )
-                  // onPressed: () => Navigator.pop(context),
-                ],
-              ),
-            ),
-          ),
-        );
-      });
-}
-
 class EntryForm extends StatefulWidget {
   String? _clientName;
   String? _clientPhone;
