@@ -10,7 +10,7 @@ import 'package:zione_app/config/constants.dart' as conf;
     'Authorization': auth_config.token
   };
 
-String validadeEndpoint(String endpoint) {
+String _validEndpoint(String endpoint) {
   //TODO: check if endpoint is a valid url, if not, fix. if cant fix, return error
   return endpoint;
 }
@@ -36,7 +36,7 @@ Future<Map> getGeocoding(String address) async {
 Future<Map> getContent(String endpoint) async {
   Map result;
 
-  final validEndpoint = validadeEndpoint(endpoint);
+  final validEndpoint = _validEndpoint(endpoint);
 
   final url = Uri.http(conf.host+":"+conf.port, "/$validEndpoint");
   final response = await http.get(url, headers:headers);
@@ -52,10 +52,47 @@ Future<Map> getContent(String endpoint) async {
 Future<Map> postContent(String endpoint, Map content) async {
   Map result;
 
-  final validEndpoint = validadeEndpoint(endpoint);
+  final validEndpoint = _validEndpoint(endpoint);
 
   final url = Uri.http(conf.host+":"+conf.port, "/$validEndpoint");
   final response = await http.post(url, headers:headers, body:jsonEncode(content));
+
+  result = jsonDecode(response.body);
+
+  return result;
+}
+
+
+
+
+Future<Map> closeContent(String endpoint, Map content) async {
+  Map result;
+  final id = content['id'];
+
+  // final validEndpoint = _validEndpoint(endpoint);
+  final validEndpoint = "$endpoint/$id/actions/close";
+
+  final url = Uri.http(conf.host+":"+conf.port, "/$validEndpoint");
+  final response = await http.post(url, headers:headers, body:jsonEncode(content));
+
+  result = jsonDecode(response.body);
+
+  print(result);
+  return result;
+}
+
+
+
+
+Future<Map> deleteContent(String endpoint, Map content) async {
+  Map result;
+  final id = content['id'];
+
+  // final validEndpoint = _validEndpoint(endpoint);
+  final validEndpoint = "$endpoint/$id";
+
+  final url = Uri.http(conf.host+":"+conf.port, "/$validEndpoint");
+  final response = await http.delete(url, headers:headers, body:jsonEncode(content));
 
   result = jsonDecode(response.body);
 
