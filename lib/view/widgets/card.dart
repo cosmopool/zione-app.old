@@ -55,7 +55,7 @@ class _EntryCardState extends State<EntryCard> {
                 trailing: expanded
                     ? IconButton(
                         icon: const Icon(FontAwesomeIcons.ellipsisV),
-                        onPressed: () => showBottomAutoSizeModal(context, CardMenu("agendamento")),
+                        onPressed: () => showBottomAutoSizeModal(context, CardMenu("agendamento", null, widget.entry)),
                       )
                     : null,
                 onTap: () {
@@ -155,7 +155,7 @@ class _TicketCardState extends State<TicketCard> {
                 trailing: expanded
                     ? IconButton(
                         icon: const Icon(FontAwesomeIcons.ellipsisV),
-                        onPressed: () => showBottomAutoSizeModal(context, CardMenu("chamado")),
+                        onPressed: () => showBottomAutoSizeModal(context, CardMenu("chamado", widget.ticket, null)),
                       )
                     : null,
                 onTap: () {
