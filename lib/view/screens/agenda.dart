@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import 'package:date_field/date_field.dart';
 
 import 'package:zione_app/view/widgets/card.dart';
 import 'package:zione_app/view/widgets/add_entry.dart';
@@ -62,13 +63,27 @@ class AgendaPage extends StatefulWidget {
 
 class _AgendaPageState extends State<AgendaPage> {
   final List _contentList = [];
+  final Map _entryIndexedByDate = {};
   bool _isLoading = true;
+
+  Future<void> indexEntryByDate(entry) async {
+        final date = entry.date;
+
+        if (_entryIndexedByDate[date] == null) {
+          _entryIndexedByDate[date] = [];
+        }
+
+        _entryIndexedByDate[date].add(entry);
+  }
 
   Future<void> getAgendaEntries() async {
     await req.getContent('agenda').then((res) {
       var temp = res['Result'];
       temp.forEach((e) {
-        _contentList.add(agenda.AgendaEntry(e));
+        final entry = agenda.AgendaEntry(e);
+        _contentList.add(entry);
+
+        indexEntryByDate(entry);
       });
     });
 
