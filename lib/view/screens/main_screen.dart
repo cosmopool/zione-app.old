@@ -73,15 +73,15 @@ class _MainPageState extends State<MainPage> {
         currentIndex: _selectedScreenIndex,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(FontAwesomeIcons.calendarAlt),
             label: 'Agenda',
           ),
           BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.plusSquare),
-            label: 'Adicionar',
+            icon: Icon(FontAwesomeIcons.tasks),
+            label: 'Tarefas',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(FontAwesomeIcons.tools),
             label: 'Tickets',
           ),
         ],

@@ -36,7 +36,7 @@ class _BottomNavigationMenuState extends State<BottomNavigationMenu> {
       currentIndex: _selectedIndex,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+          icon: Icon(FontAwesomeIcons.calendar),
           label: 'Agenda',
         ),
         BottomNavigationBarItem(
@@ -44,7 +44,7 @@ class _BottomNavigationMenuState extends State<BottomNavigationMenu> {
           label: 'Adicionar',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.school),
+          icon: Icon(FontAwesomeIcons.tools),
           label: 'Tickets',
         ),
       ],
