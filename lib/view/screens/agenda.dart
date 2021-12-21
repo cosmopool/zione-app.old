@@ -66,7 +66,7 @@ class _AgendaPageState extends State<AgendaPage> {
   final Map _entryIndexedByDate = {};
   bool _isLoading = true;
 
-  Future<void> indexEntryByDate(entry) async {
+  void indexEntryByDate(entry) {
         final date = entry.date;
 
         if (_entryIndexedByDate[date] == null) {
