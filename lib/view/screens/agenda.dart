@@ -76,7 +76,7 @@ class _AgendaPageState extends State<AgendaPage> {
         _entryIndexedByDate[date].add(entry);
   }
 
-  Future<void> getAgendaEntries() async {
+  Future<void> fetchAgendaEntries() async {
     await req.getContent('agenda').then((res) {
       var temp = res['Result'];
       temp.forEach((e) {
@@ -95,7 +95,7 @@ class _AgendaPageState extends State<AgendaPage> {
   @override
   void initState() {
     super.initState();
-    getAgendaEntries();
+    fetchAgendaEntries();
   }
 
   @override
