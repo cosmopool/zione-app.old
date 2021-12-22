@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:date_field/date_field.dart';
 
 import 'package:zione_app/view/widgets/card.dart';
+import 'package:zione_app/view/widgets/date_flag.dart';
 import 'package:zione_app/view/widgets/add_entry.dart';
 import 'package:zione_app/view/widgets/bottom_modal.dart';
 
@@ -62,18 +63,18 @@ class AgendaPage extends StatefulWidget {
 // }
 
 class _AgendaPageState extends State<AgendaPage> {
-  final List _contentList = [];
+  final List<Widget> _contentList = [];
   final Map _entryIndexedByDate = {};
   bool _isLoading = true;
 
   void indexEntryByDate(entry) {
-        final date = entry.date;
+    final date = entry.date;
 
-        if (_entryIndexedByDate[date] == null) {
-          _entryIndexedByDate[date] = [];
-        }
+    if (_entryIndexedByDate[date] == null) {
+      _entryIndexedByDate[date] = [];
+    }
 
-        _entryIndexedByDate[date].add(entry);
+    _entryIndexedByDate[date].add(entry);
   }
 
   Future<void> fetchAgendaEntries() async {
@@ -81,15 +82,30 @@ class _AgendaPageState extends State<AgendaPage> {
       var temp = res['Result'];
       temp.forEach((e) {
         final entry = agenda.AgendaEntry(e);
-        _contentList.add(entry);
-
         indexEntryByDate(entry);
       });
     });
 
+    print(_contentList);
     setState(() {
       _isLoading = false;
     });
+  }
+
+  List<Widget> _populateContentList() {
+    _entryIndexedByDate.forEach((date, entryList) {
+      _contentList.add(DateFlag(
+        dateString: date,
+      ));
+
+      entryList.forEach((entry) {
+        _contentList.add(EntryCard(entry: entry));
+      });
+    });
+
+      // _isLoading ? print("loading") : print(_entryIndexedByDate.keys);
+      // return [Container()];
+    return _contentList;
   }
 
   @override
@@ -102,11 +118,15 @@ class _AgendaPageState extends State<AgendaPage> {
   Widget build(BuildContext context) {
     return _isLoading
         ? const Center(child: CircularProgressIndicator())
-        : ListView.builder(
-            itemCount: _contentList.length,
-            itemBuilder: (context, index) {
-              return EntryCard(entry: _contentList[index]);
-            });
+        : ListView(
+            children: _populateContentList(),
+        );
+        // : ListView.builder(
+        //     itemCount: _contentList.length,
+        //     itemBuilder: (context, index) {
+        //       _contentList[index];
+        //       // return EntryCard(entry: _contentList[index]);
+        //     });
   }
 }
 
