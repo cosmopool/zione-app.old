@@ -29,27 +29,43 @@ class CardMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future<void> _showMyDialog(
-        String endpoint, int id, Action action, Entry entry) async {
+    late final Entry entry;
+
+    final ticketId = returnIdFromEntry(ticket);
+    if (ticketId > 0) {
+      entry = Entry.ticket;
+    }
+    final appointmentId = returnIdFromEntry(appointment);
+    if (appointmentId > 0) {
+      entry = Entry.appointment;
+    }
+
+    Future<void> _showMyDialog(Action action) async {
+      late int id;
       late String msg;
+      late String endpoint;
       late String entryType;
       late String title;
-      var fun;
+      var request;
 
       if (entry == Entry.ticket) {
         entryType = "chamado";
+        endpoint = "tickets";
+        id = ticketId;
       } else {
         entryType = "agendamento";
+        endpoint = "appointments";
+        id = appointmentId;
       }
 
       if (action == Action.delete) {
         title = "Deletar $entryType";
         msg = "Tem certeza que deseja deletar esse $entryType?";
-        fun = req.deleteContent;
+        request = req.deleteContent;
       } else if (action == Action.close) {
         title = "Finalizar $entryType";
         msg = "Tem certeza que deseja finalizar esse $entryType?";
-        fun = req.closeContent;
+        request = req.closeContent;
       }
 
       return showDialog<void>(
@@ -73,9 +89,10 @@ class CardMenu extends StatelessWidget {
               TextButton(
                 child: const Text('Sim'),
                 onPressed: () {
-                  fun(endpoint, {'id': id});
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pop();
+                  request(endpoint, {'id': id});
+                  // TODO: snackbar with response status
+                  Navigator.pop(context);
+                  Navigator.pop(context);
                 },
               ),
             ],
@@ -90,30 +107,14 @@ class CardMenu extends StatelessWidget {
           leading: const Icon(FontAwesomeIcons.trash),
           title: Text('Deletar $entryTitle'),
           onTap: () {
-            final ticketId = returnIdFromEntry(ticket);
-            if (ticketId > 0) {
-              _showMyDialog("tickets", ticketId, Action.delete, Entry.ticket);
-            }
-            final appointmentId = returnIdFromEntry(appointment);
-            if (appointmentId > 0) {
-              _showMyDialog("appointments", appointmentId, Action.delete,
-                  Entry.appointment);
-            }
+            _showMyDialog(Action.delete);
           },
         ),
         ListTile(
           leading: const Icon(FontAwesomeIcons.calendarCheck),
           title: Text("Finalizar $entryTitle"),
           onTap: () {
-            final ticketId = returnIdFromEntry(ticket);
-            if (ticketId > 0) {
-              _showMyDialog("tickets", ticketId, Action.close, Entry.ticket);
-            }
-            final appointmentId = returnIdFromEntry(appointment);
-            if (appointmentId > 0) {
-              _showMyDialog("appointments", appointmentId, Action.close,
-                  Entry.appointment);
-            }
+            _showMyDialog(Action.close);
           },
         ),
         ListTile(
