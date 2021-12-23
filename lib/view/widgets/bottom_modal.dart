@@ -4,6 +4,7 @@ showBottomAutoSizeModal(context, Widget contentWidget) {
   return showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
+      useRootNavigator: true,
       builder: (BuildContext context) {
         return SingleChildScrollView(
           child: Container(
