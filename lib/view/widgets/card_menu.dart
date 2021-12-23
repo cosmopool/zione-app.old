@@ -120,8 +120,23 @@ class CardMenu extends StatelessWidget {
         ListTile(
           leading: const Icon(FontAwesomeIcons.edit),
           title: Text("Editar $entryTitle"),
-          onTap: () => print('edit this entry'),
-        )
+          onTap: () {
+            // TODO: implement edit form
+            print('edit this entry');
+            Navigator.pop(context);
+          },
+        ),
+        Visibility(
+            visible: (entry == Entry.ticket),
+            child: ListTile(
+              leading: const Icon(FontAwesomeIcons.calendarAlt),
+              title: const Text("Marcar Agendamento"),
+              onTap: () {
+                // TODO: implement book appointment
+                print('book appointment');
+                Navigator.pop(context);
+              },
+            ))
       ],
     );
   }
