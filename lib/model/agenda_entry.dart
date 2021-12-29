@@ -52,4 +52,25 @@ class AgendaEntry {
     time = time.substring(0, 5);
     duration = duration.substring(0, 5);
   }
+
+  Map toMap() {
+    Map agendaEntry = {};
+
+    if (agendaEntry['id'] != null) {
+      agendaEntry['id'] = id;
+    }
+    if (agendaEntry['ticketId'] != null) {
+      agendaEntry['ticketId'] = ticketId;
+    }
+    agendaEntry['clientName'] = clientName;
+    agendaEntry['clientPhone'] = clientPhone;
+    agendaEntry['clientAddress'] = clientAddress;
+    agendaEntry['serviceType'] = serviceType;
+    agendaEntry['description'] = description;
+    agendaEntry['date'] = date;
+    agendaEntry['time'] = time;
+    agendaEntry['duration'] = duration;
+
+    return agendaEntry;
+  }
 }

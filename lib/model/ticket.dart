@@ -1,4 +1,3 @@
-
 List<Ticket> parseListJsonToTicket(List response) {
   List<Ticket> temp = [];
 
@@ -40,9 +39,27 @@ class Ticket {
     isFinished = response['isFinished'] as bool;
   }
 
+  Map toMap() {
+    Map ticket = {};
+
+    ticket['clientName'] = clientName;
+    ticket['clientPhone'] = clientPhone;
+    ticket['clientAddress'] = clientAddress;
+    // ticket['clientAddressStreet'] = clientAddressStreet;
+    // ticket['clientAddressNumber'] = clientAddressNumber;
+    // ticket['clientAddressCity'] = clientAddressCity;
+    // ticket['clientAddressRegion'] = clientAddressRegion;
+    ticket['serviceType'] = serviceType;
+    ticket['description'] = description;
+    ticket['id'] = id;
+    ticket['isFinished'] = isFinished;
+
+    return ticket;
+  }
+
   Map mapToEdit() {
     Map ticket = {};
-    
+
     ticket['clientName'] = clientName;
     ticket['clientPhone'] = clientPhone;
     ticket['clientAddress'] = clientAddress;
@@ -60,7 +77,7 @@ class Ticket {
 
   Map mapToCreate() {
     Map ticket = {};
-    
+
     ticket['clientName'] = clientName;
     ticket['clientPhone'] = clientPhone;
     ticket['clientAddress'] = clientAddress;
