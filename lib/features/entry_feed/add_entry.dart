@@ -5,6 +5,7 @@ import 'package:date_field/date_field.dart';
 
 import 'package:zione_app/view/widgets/input_text.dart' as input;
 import 'package:zione_app/model/request.dart' as req;
+import 'package:zione_app/repositories/entry.dart';
 
 class EntryForm extends StatefulWidget {
   String? _clientName;
@@ -245,6 +246,7 @@ class _EntryFormState extends State<EntryForm> {
     };
 
     print(agendaEntry);
+    final agendaRepository = AgendaRepository();
     await req.postContent('agenda', agendaEntry).then((value) {
       String status;
       late String res;
