@@ -1,5 +1,7 @@
-class Appointment{
-  final int id;
+import 'package:zione_app/features/entry/entry_model.dart';
+
+class Appointment extends Entry {
+  late final int id;
   final String date;
   final String time;
   final String duration;
@@ -7,12 +9,25 @@ class Appointment{
   final int ticketId;
   final bool appointmentIsFinished;
 
-  Appointment({
-    this.id = 0,
-    this.date = "",
-    this.time = "",
-    this.duration = "",
-    this.appointmentId = 0,
-    this.ticketId = 0,
-    this.appointmentIsFinished = false});
+  Appointment(
+      {this.date = "",
+      this.time = "",
+      this.duration = "",
+      this.appointmentId = 0,
+      this.ticketId = 0,
+      this.appointmentIsFinished = false});
+
+  @override
+  Map toMap() {
+    Map entry = {};
+
+    entry['date'] = date;
+    entry['time'] = time;
+    entry['duration'] = duration;
+    entry['appointmentId'] = appointmentId;
+    entry['ticketId'] = ticketId;
+    entry['appointmentIsFinished'] = appointmentIsFinished;
+
+    return entry;
+  }
 }

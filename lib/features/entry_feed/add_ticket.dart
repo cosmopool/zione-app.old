@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:zione_app/view/widgets/input_text.dart' as input;
-import 'package:zione_app/model/request.dart' as req;
+import 'package:zione_app/features/entry_form/input_text.dart' as input;
+import 'package:zione_app/repositories/request.dart' as req;
 
 class TicketForm extends StatefulWidget {
   String? _clientName;

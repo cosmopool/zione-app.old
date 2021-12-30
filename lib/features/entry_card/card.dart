@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:zione_app/model/ticket.dart';
-import 'package:zione_app/model/agenda_entry.dart';
+import 'package:zione_app/features/ticket/ticket_model.dart';
+import 'package:zione_app/features/entry_card/agenda_entry_model.dart';
 
-import 'package:zione_app/view/widgets/card_menu.dart';
-import 'package:zione_app/view/widgets/bottom_modal.dart';
+import 'package:zione_app/features/entry_card/card_menu.dart';
+import 'package:zione_app/features/bottom_modal/bottom_modal.dart';
 
-import 'package:zione_app/controller/url_launcher.dart' as launch;
+import 'package:zione_app/features/url_app_launcher/url_launcher.dart' as launch;
 
 Widget dividerTheme() {
   return const Divider(

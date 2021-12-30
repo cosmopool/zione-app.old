@@ -1,5 +1,5 @@
-import 'package:zione_app/model/request.dart' as request;
-import 'package:zione_app/config/auth.dart' as auth_config;
+import 'package:zione_app/repositories/request.dart' as request;
+import 'package:zione_app/core/auth.dart' as auth_config;
 
 Map validadeResponse(Map response) {
   // receives a response and check if was successful or not

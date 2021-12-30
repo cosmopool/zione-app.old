@@ -3,9 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:date_field/date_field.dart';
 
-import 'package:zione_app/view/widgets/input_text.dart' as input;
-import 'package:zione_app/model/request.dart' as req;
-import 'package:zione_app/repositories/entry.dart';
+import 'package:zione_app/features/entry_form/input_text.dart' as input;
+import 'package:zione_app/repositories/request.dart' as req;
+import 'package:zione_app/repositories/entry_repository.dart';
 
 class EntryForm extends StatefulWidget {
   String? _clientName;
@@ -246,7 +246,6 @@ class _EntryFormState extends State<EntryForm> {
     };
 
     print(agendaEntry);
-    final agendaRepository = AgendaRepository();
     await req.postContent('agenda', agendaEntry).then((value) {
       String status;
       late String res;

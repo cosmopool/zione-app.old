@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:zione_app/view/screens/login.dart';
-import 'package:zione_app/view/screens/tickets.dart';
-// import 'package:zione_app/view/screens/settings.dart';
-import 'package:zione_app/view/screens/main_screen.dart';
-import 'package:zione_app/view/screens/agenda.dart';
+
 import 'package:go_router/go_router.dart';
+
+import 'package:zione_app/screens/login.dart';
+import 'package:zione_app/screens/tickets.dart';
+// import 'package:zione_app/screens/settings.dart';
+import 'package:zione_app/screens/main_screen.dart';
+import 'package:zione_app/screens/agenda.dart';
 
 void main() {
   runApp(App());

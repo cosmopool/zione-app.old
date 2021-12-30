@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:zione_app/model/ticket.dart';
+import 'package:zione_app/features/ticket/ticket_model.dart';
 // import 'package:zione_app/model/appointment.dart';
-import 'package:zione_app/model/agenda_entry.dart';
+import 'package:zione_app/features/entry_card/agenda_entry_model.dart';
 
-import 'package:zione_app/model/request.dart' as req;
+import 'package:zione_app/repositories/request.dart' as req;
 
 int returnIdFromEntry(entry) {
   final id = entry?.id;

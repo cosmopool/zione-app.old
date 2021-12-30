@@ -1,8 +1,8 @@
-import 'package:zione_app/config/auth.dart' as auth_config;
+import 'package:zione_app/core/auth.dart' as auth_config;
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:zione_app/config/constants.dart' as conf;
+import 'package:zione_app/core/constants.dart' as conf;
 
   final headers = {
     'Content-type' : 'application/json', 
