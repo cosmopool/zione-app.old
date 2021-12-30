@@ -892,3 +892,5 @@ DerivedData/
 
 # FVM
 .fvm/flutter_sdk
+
+.flutter-plugins-dependencies
