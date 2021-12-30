@@ -6,7 +6,7 @@ import 'package:zione_app/core/auth.dart' as auth_config;
 
 import 'package:zione_app/features/entry/entry_model.dart';
 
-enum Endpoint { tickets, appointments }
+import 'package:zione_app/core/constants.dart';
 
 class EntryRepository {
   final Map<String, String> _headers = {

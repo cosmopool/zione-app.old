@@ -1,3 +1,5 @@
+import 'package:zione_app/features/entry/entry_model.dart';
+
 List<Ticket> parseListJsonToTicket(List response) {
   List<Ticket> temp = [];
 
@@ -12,7 +14,7 @@ List<Ticket> parseListJsonToTicket(List response) {
   }
 }
 
-class Ticket {
+class Ticket extends Entry {
   int? id;
   late String clientName;
   late String clientPhone;

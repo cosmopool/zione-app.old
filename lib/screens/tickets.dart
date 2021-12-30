@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 import 'package:zione_app/features/entry_card/card.dart';
 import 'package:zione_app/features/entry_feed/add_ticket.dart';
+import 'package:zione_app/features/entry_feed/feed_repository.dart';
 import 'package:zione_app/features/bottom_modal/bottom_modal.dart';
 
-import 'package:zione_app/repositories/request.dart' as req;
-import 'package:zione_app/features/ticket/ticket_model.dart';
-
+import 'package:zione_app/core/constants.dart';
 
 class TicketsPage extends StatefulWidget {
   @override
@@ -15,37 +15,28 @@ class TicketsPage extends StatefulWidget {
 }
 
 class _TicketsPageState extends State<TicketsPage> {
-  final List _contentList = [];
-  bool _isLoading = true;
-
-  Future<void> getContent() async {
-    await req.getContent('tickets').then((res) {
-      var temp = res['Result'];
-      temp.forEach((e) {
-        _contentList.add(Ticket(e));
-      });
-    });
-
-    setState(() {
-      _isLoading = false;
-    });
-  }
+  late List _contentList;
+  late bool _isLoading;
 
   @override
   void initState() {
     super.initState();
-    getContent();
+    context.read<FeedRepository>().fetchEntries(Endpoint.tickets);
   }
 
   @override
   Widget build(BuildContext context) {
+    _contentList = context.watch<FeedRepository>().listOfEntries;
+    _isLoading = context.watch<FeedRepository>().isLoading;
+
     return _isLoading
         ? const Center(child: CircularProgressIndicator())
         : ListView.builder(
             itemCount: _contentList.length,
             itemBuilder: (context, index) {
               return TicketCard(ticket: _contentList[index]);
-            });
+            },
+          );
   }
 }
 
