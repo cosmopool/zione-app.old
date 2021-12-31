@@ -27,6 +27,20 @@ class Ticket extends Entry {
   late String description;
   bool isFinished = false;
 
+  Ticket.fromRequest(Map<String, dynamic> response) {
+    id = response['id'] as int;
+    clientName = response['clientName'] as String;
+    clientPhone = response['clientPhone'] as String;
+    clientAddress = response['clientAddress'] as String;
+    // clientAddressStreet = response['clientAddressStreet'] as String;
+    // clientAddressNumber = response['clientAddressNumber'] as String;
+    // clientAddressCity = response['clientAddressCity'] as String;
+    // clientAddressRegion = response['clientAddressRegion'] as String;
+    serviceType = response['serviceType'] as String;
+    description = response['description'] as String;
+    isFinished = response['isFinished'] as bool;
+  }
+
   Ticket(Map<String, dynamic> response) {
     id = response['id'] as int;
     clientName = response['clientName'] as String;
