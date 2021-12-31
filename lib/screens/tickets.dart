@@ -7,8 +7,6 @@ import 'package:zione_app/features/entry_feed/add_ticket.dart';
 import 'package:zione_app/features/entry_feed/feed_repository.dart';
 import 'package:zione_app/features/bottom_modal/bottom_modal.dart';
 
-import 'package:zione_app/core/constants.dart';
-
 class TicketsPage extends StatefulWidget {
   @override
   _TicketsPageState createState() => _TicketsPageState();
@@ -21,12 +19,12 @@ class _TicketsPageState extends State<TicketsPage> {
   @override
   void initState() {
     super.initState();
-    context.read<FeedRepository>().fetchEntries(Endpoint.tickets);
+    context.read<FeedRepository>().fetchTickets();
   }
 
   @override
   Widget build(BuildContext context) {
-    _contentList = context.watch<FeedRepository>().listOfEntries;
+    _contentList = context.watch<FeedRepository>().listOfTickets;
     _isLoading = context.watch<FeedRepository>().isLoading;
 
     return _isLoading
