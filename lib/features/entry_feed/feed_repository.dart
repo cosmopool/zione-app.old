@@ -74,19 +74,19 @@ class FeedRepository extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteEntry(Entry entry, Endpoint endpoint) {
+  void deleteEntry(entry, Endpoint endpoint) {
     final EntryRepository repository = EntryRepository();
     repository.delete(entry, endpoint);
     notifyListeners();
   }
 
-  void insertEntry(Entry entry, Endpoint endpoint) {
+  void insertEntry(entry, Endpoint endpoint) {
     final EntryRepository repository = EntryRepository();
     repository.post(entry, endpoint);
     notifyListeners();
   }
 
-  void closeEntry(Entry entry, Endpoint endpoint) {
+  void closeEntry(entry, Endpoint endpoint) {
     final EntryRepository repository = EntryRepository();
     repository.close(entry, endpoint);
     notifyListeners();
