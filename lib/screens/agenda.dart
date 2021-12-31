@@ -8,7 +8,7 @@ import 'package:zione_app/features/entry_feed/add_entry.dart';
 import 'package:zione_app/features/bottom_modal/bottom_modal.dart';
 
 import 'package:zione_app/repositories/request.dart' as req;
-import 'package:zione_app/features/entry_card/agenda_entry_model.dart' as agenda;
+import 'package:zione_app/features/agenda/agenda_entry_model.dart' as agenda;
 
 class AgendaPage extends StatefulWidget {
   @override

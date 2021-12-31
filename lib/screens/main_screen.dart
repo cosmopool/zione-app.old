@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:zione_app/repositories/request.dart' as req;
-import 'package:zione_app/features/entry_card/agenda_entry_model.dart' as entry;
+import 'package:zione_app/features/agenda/agenda_entry_model.dart' as entry;
 
 import 'package:zione_app/screens/tickets.dart';
 import 'package:zione_app/screens/tickets.dart' as ticket;
