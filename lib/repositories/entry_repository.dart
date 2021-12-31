@@ -99,7 +99,6 @@ class EntryRepository {
 
     result = jsonDecode(response.body);
 
-    // print(result);
     return result;
   }
 

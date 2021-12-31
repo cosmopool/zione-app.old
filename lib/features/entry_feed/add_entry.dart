@@ -245,7 +245,7 @@ class _EntryFormState extends State<EntryForm> {
       'description': widget._description,
     };
 
-    print(agendaEntry);
+    // print(agendaEntry);
     await req.postContent('agenda', agendaEntry).then((value) {
       String status;
       late String res;

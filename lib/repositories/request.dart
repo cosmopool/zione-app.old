@@ -77,7 +77,6 @@ Future<Map> closeContent(String endpoint, Map content) async {
 
   result = jsonDecode(response.body);
 
-  print(result);
   return result;
 }
 
