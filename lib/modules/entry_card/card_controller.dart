@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 import 'package:zione_app/core/constants.dart';
@@ -28,3 +29,6 @@ enum Entry { ticket, appointment }
     if (appointmentId > 0) {
       entry = Entry.appointment;
     }
+
+class CardController extends ChangeNotifier{
+}

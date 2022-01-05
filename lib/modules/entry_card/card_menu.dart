@@ -23,12 +23,14 @@ class CardMenu extends StatelessWidget {
         ListTile(
           leading: const Icon(FontAwesomeIcons.trash),
           title: Text('Deletar $entryTitle'),
-          onTap: () => context.read<EntryCardRepository>().deleteEntry(entry, endpoint),
+          onTap: () =>
+              context.read<EntryCardRepository>().deleteEntry(entry, endpoint),
         ),
         ListTile(
           leading: const Icon(FontAwesomeIcons.calendarCheck),
           title: Text("Finalizar $entryTitle"),
-          onTap: () => context.read<FeedRepository>().closeEntry(entry, endpoint),
+          onTap: () =>
+              context.read<FeedRepository>().closeEntry(entry, endpoint),
         ),
         ListTile(
           leading: const Icon(FontAwesomeIcons.edit),
@@ -40,16 +42,17 @@ class CardMenu extends StatelessWidget {
           },
         ),
         Visibility(
-            visible: (entry == Entry.ticket),
-            child: ListTile(
-              leading: const Icon(FontAwesomeIcons.calendarAlt),
-              title: const Text("Marcar Agendamento"),
-              onTap: () {
-                // TODO: implement book appointment
-                print('book appointment');
-                Navigator.pop(context);
-              },
-            ))
+          visible: (entry == Entry.ticket),
+          child: ListTile(
+            leading: const Icon(FontAwesomeIcons.calendarAlt),
+            title: const Text("Marcar Agendamento"),
+            onTap: () {
+              // TODO: implement book appointment
+              print('book appointment');
+              Navigator.pop(context);
+            },
+          ),
+        )
       ],
     );
   }

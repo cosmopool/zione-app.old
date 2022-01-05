@@ -7,7 +7,8 @@ import 'package:zione_app/features/agenda/agenda_entry_model.dart';
 import 'package:zione_app/features/entry_card/card_menu.dart';
 import 'package:zione_app/features/bottom_modal/bottom_modal.dart';
 
-import 'package:zione_app/features/url_app_launcher/url_launcher.dart' as launch;
+import 'package:zione_app/features/url_app_launcher/url_launcher.dart'
+    as launch;
 
 Widget dividerTheme() {
   return const Divider(
@@ -34,8 +35,7 @@ class _EntryCardState extends State<EntryCard> {
   Widget build(BuildContext context) {
     return Center(
       child: Card(
-        margin: const EdgeInsets.symmetric(
-            horizontal: 20, vertical: 7.5),
+        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7.5),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(borderRadius))),
         child: Column(
@@ -55,7 +55,8 @@ class _EntryCardState extends State<EntryCard> {
                 trailing: expanded
                     ? IconButton(
                         icon: const Icon(FontAwesomeIcons.ellipsisV),
-                        onPressed: () => showBottomAutoSizeModal(context, CardMenu("agendamento", null, widget.entry)),
+                        onPressed: () => showBottomAutoSizeModal(context,
+                            CardMenu("agendamento", null, widget.entry)),
                       )
                     : null,
                 onTap: () {
@@ -89,7 +90,7 @@ class _EntryCardState extends State<EntryCard> {
                     subtitle: Text(widget.entry.serviceType),
                     // trailing: const Icon(FontAwesomeIcons.phone),
                     trailing: IconButton(
-                    onPressed: () => launch.phone(widget.entry.clientPhone),
+                        onPressed: () => launch.phone(widget.entry.clientPhone),
                         icon: const Icon(FontAwesomeIcons.phone)),
                   ),
                   dividerTheme(),
@@ -98,7 +99,8 @@ class _EntryCardState extends State<EntryCard> {
                     subtitle: Text(widget.entry.clientAddress),
                     // trailing: const Icon(Icons.location_on),
                     trailing: IconButton(
-                    onPressed: () => launch.maps(widget.entry.clientAddress),
+                        onPressed: () =>
+                            launch.maps(widget.entry.clientAddress),
                         icon: const Icon(FontAwesomeIcons.mapMarkerAlt)),
                   ),
                   dividerTheme(),
@@ -155,7 +157,8 @@ class _TicketCardState extends State<TicketCard> {
                 trailing: expanded
                     ? IconButton(
                         icon: const Icon(FontAwesomeIcons.ellipsisV),
-                        onPressed: () => showBottomAutoSizeModal(context, CardMenu("chamado", widget.ticket, null)),
+                        onPressed: () => showBottomAutoSizeModal(
+                            context, CardMenu("chamado", widget.ticket, null)),
                       )
                     : null,
                 onTap: () {
@@ -189,7 +192,8 @@ class _TicketCardState extends State<TicketCard> {
                     subtitle: Text(widget.ticket.serviceType),
                     // trailing: const Icon(FontAwesomeIcons.phone),
                     trailing: IconButton(
-                    onPressed: () => launch.phone(widget.ticket.clientPhone),
+                        onPressed: () =>
+                            launch.phone(widget.ticket.clientPhone),
                         icon: const Icon(FontAwesomeIcons.phone)),
                   ),
                   dividerTheme(),
@@ -198,7 +202,8 @@ class _TicketCardState extends State<TicketCard> {
                     subtitle: Text(widget.ticket.clientAddress),
                     // trailing: const Icon(Icons.location_on),
                     trailing: IconButton(
-                    onPressed: () => launch.maps(widget.ticket.clientAddress),
+                        onPressed: () =>
+                            launch.maps(widget.ticket.clientAddress),
                         icon: const Icon(FontAwesomeIcons.mapMarkerAlt)),
                   ),
                   dividerTheme(),

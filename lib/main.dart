@@ -21,6 +21,7 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => FeedRepository()),
+        ChangeNotifierProvider(create: (_) => CardController()),
       ],
       child: MaterialApp.router(
         routeInformationParser: _router.routeInformationParser,
